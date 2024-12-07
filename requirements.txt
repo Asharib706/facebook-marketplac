@@ -5,3 +5,4 @@ playwright
 Requests
 streamlit
 uvicorn
+python-dotenv
