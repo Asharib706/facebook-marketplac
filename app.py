@@ -93,13 +93,13 @@ def root():
 
 # Marketplace Scraper without explicitly giving location
 @app.get("/crawl_facebook_marketplace")
-def crawl_facebook_marketplace(city: str, query: str, max_price: int):
+def crawl_facebook_marketplace(city: str, query: str):
     category = query.lower()
     base_url = city_urls.get(city, DEFAULT_URL)
     marketplace_url = (
-        f"{base_url}/search/?query={query}&maxPrice={max_price}"
+        f"{base_url}/search/?query={query}"
     )
-
+    print(marketplace_url)
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
