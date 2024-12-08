@@ -65,12 +65,12 @@ DEFAULT_URL = "https://www.facebook.com/marketplace"
 load_dotenv()
 
 # MongoDB Configuration
-MONGO_URI = os.getenv("MONGO_URI")
-if not MONGO_URI:
-    raise RuntimeError("MONGO_URI is not set in the environment.")
-client = pymongo.MongoClient(MONGO_URI)
-db = client['test']
-collection = db['fbproducts']
+# MONGO_URI = os.getenv("MONGO_URI")
+# if not MONGO_URI:
+#     raise RuntimeError("MONGO_URI is not set in the environment.")
+# client = pymongo.MongoClient(MONGO_URI)
+# db = client['test']
+# collection = db['fbproducts']
 
 # Configure CORS
 origins = [
@@ -143,9 +143,9 @@ def crawl_facebook_marketplace(city: str, query: str):
                 except Exception:
                     continue
 
-            if parsed:
-                for item in parsed:
-                    collection.update_one({'post_url': item['post_url']}, {'$set': item}, upsert=True)
+            # if parsed:
+            #     for item in parsed:
+            #         collection.update_one({'post_url': item['post_url']}, {'$set': item}, upsert=True)
             return {"listings": parsed}
 
         except Exception as e:
